@@ -1,30 +1,11 @@
-const testimoniList = [
-  {
-    name: "John",
-    occupation: "Designer",
-    message:
-      "I like the way that the production clothes from this store is packaged and delivered",
-  },
-  {
-    name: "Soleh",
-    occupation: "Designer",
-    message:
-      "I like the way that the production clothes from this store is packaged and delivered",
-  },
-  {
-    name: "Yazid",
-    occupation: "Designer",
-    message:
-      "I like the way that the production clothes from this store is packaged and delivered",
-  },
-];
+import { useEffect, useState } from "react";
 
-export default function HomeTestimoni() {
+export default function HomeTestimoni({ testimoniData, handleAddTestimoni,bannerData }) {
   return (
     <section>
       <div className="container">
         <div className="row">
-          {testimoniList.map((item) => (
+          {testimoniData.map((item) => (
             <div className="col-lg-4">
               <div
                 className="py-2 px-4"
@@ -57,6 +38,8 @@ export default function HomeTestimoni() {
             </div>
           ))}
         </div>
+        <button onClick={handleAddTestimoni}>Add Testimoni</button>
+        <p>title banner adalah: {bannerData.title}</p>
       </div>
     </section>
   );

@@ -1,18 +1,30 @@
-import logo from "./logo.svg";
 import "./App.css";
-import Layout from "./components/global/layout";
-import HomeBanner from "./components/pages/home/home-banner";
-import HomeTestimoni from "./components/pages/home/home-testimoni";
+
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import Home from "./components/pages/home";
+import About from "./components/pages/about";
+import { useState } from "react";
+import Todo from "./components/pages/todo";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Home />,
+  },
+  {
+    path: "/about",
+    element: <About />,
+  },
+  {
+    path: "/todo",
+    element: <Todo />,
+  },
+]);
 
 function App() {
-  return (
-    <div className="App">
-      <Layout>
-        <HomeBanner />
-        <HomeTestimoni />
-      </Layout>
-    </div>
-  );
+  const [isAuth, isAuthSet] = useState(true);
+  return <RouterProvider router={router} />;
 }
 
 export default App;

@@ -1,4 +1,4 @@
-export default function HomeBanner() {
+export default function HomeBanner({ bannerData }) {
   return (
     <section className="py-5 position-relative z-1">
       <div className="container">
@@ -11,8 +11,8 @@ export default function HomeBanner() {
           </div>
           <div className="col-lg-6">
             <div className="d-flex flex-column justify-content-center h-100">
-                <h1 className="fw-bold fs-1">New Arrival</h1>
-                <p className="fs-6">Introducing our latest fashion masterpiece, the stunning clothes. Crafted with unparalleled precision and designed to captivate, this extraordinary addition to our collection embodies elegance and modernity.</p>
+              <h1 className="fw-bold fs-1">{bannerData.title}</h1>
+              <p className="fs-6">{bannerData.desc}</p>
             </div>
           </div>
         </div>
