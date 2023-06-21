@@ -1,6 +1,8 @@
 import { Button } from "react-bootstrap";
 import logo from "../../../assets/img/logo.png";
 import { RiShoppingCart2Fill } from "react-icons/ri";
+import { Link } from "react-router-dom";
+import { linkProducts } from "../../../helper/constants";
 
 export default function Navbar() {
   return (
@@ -12,7 +14,9 @@ export default function Navbar() {
           </div>
           <div className="d-flex gap-3">
             <p className="m-0">Home</p>
-            <p className="m-0">Products</p>
+            <p className="m-0">
+              <Link to={linkProducts}>Products </Link>
+            </p>
             <p className="m-0">About</p>
           </div>
         </div>

@@ -10,3 +10,9 @@
   top: 50%;
   z-index: 0;
 } */
+
+.btn-primary {
+  background-color: var(--primary) !important;
+  border-color: var(--primary) !important;
+  border-radius: 20px !important;
+}
