@@ -1,7 +1,9 @@
+import React, { Component } from "react";
 import Layout from "../../global/layout";
 import HomeBanner from "./home-banner";
 import HomeTestimoni from "./home-testimoni";
 import { useEffect, useState } from "react";
+import axios from "axios";
 
 export default function Home() {
   const [bannerData, bannerDataSet] = useState({
@@ -41,6 +43,14 @@ export default function Home() {
       return sample;
     });
   }
+
+  async function fetchTodos() {
+   
+  }
+
+  useEffect(() => {
+    fetchTodos();
+  }, []);
 
   return (
     <Layout>

@@ -8,6 +8,7 @@ import { useState } from "react";
 import Todo from "./components/pages/todo";
 import Products from "./components/pages/products";
 import { linkProducts } from "./helper/constants";
+import Comments from "./components/pages/comments";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
   {
     path: linkProducts,
     element: <Products />,
+  },
+  {
+    path: "/comments",
+    element: <Comments />,
   },
 ]);
 
