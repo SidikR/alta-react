@@ -1,13 +1,20 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Layout from "../../global/layout";
 import axios from "axios";
 import { fetchAPI, fetchAPIGraphQL } from "src/helper/hooks";
 import moment from "moment";
 import { Q_CHARACTERS } from "src/helper/query";
+import CardComments from "./card-comments";
+import { useDispatch, useSelector } from "react-redux";
+import { setJokes } from "src/store/slices/jokes";
+import { ContextUser } from "src/context";
 
 export default function Comments() {
+  // global state
+  const dispatch = useDispatch();
+  const { state, setState } = useContext(ContextUser);
+  console.log(state?.me);
   //state
-  const [jokes, jokesSet] = useState([]);
   const [query, querySet] = useState("");
   const [isLoading, isLoadingSet] = useState(false);
 
@@ -15,9 +22,8 @@ export default function Comments() {
     e.preventDefault();
     isLoadingSet(true);
     try {
-      const data = await fetchAPI(`/search?query=${query}`);      
-      jokesSet(data);
-      
+      const data = await fetchAPI(`/search?query=${query}`);
+      dispatch(setJokes(data));
       isLoadingSet(false);
     } catch (error) {
       isLoadingSet(false);
@@ -27,8 +33,8 @@ export default function Comments() {
 
   async function fetchCharacters() {
     try {
-      const {data} = await fetchAPIGraphQL("", "post", Q_CHARACTERS);
-      console.log(data)
+      const { data } = await fetchAPIGraphQL("", "post", Q_CHARACTERS);
+      console.log(data);
     } catch (error) {
       console.log(error);
     }
@@ -40,6 +46,19 @@ export default function Comments() {
 
   return (
     <Layout>
+      <button
+        onClick={() =>
+          setState({
+            me: {
+              displayName: "Salman",
+              isVerified: true,
+            },
+          })
+        }
+        className="btn btn-primary"
+      >
+        Ubah User
+      </button>
       <section
         style={{ minHeight: "100vh" }}
         className="d-flex flex-column align-items-center py-5"
@@ -58,25 +77,7 @@ export default function Comments() {
           style={{ height: 500, overflow: "auto" }}
         >
           {isLoading && <p>Loading...</p>}
-          {!isLoading &&
-            jokes.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  backgroundColor: "#f6f6f6",
-                  borderRadius: 8,
-                  boxShadow: "1px 2px 3px rgba(0,0,0,.3)",
-                  maxWidth: 520,
-                  width: "100%",
-                }}
-                className="p-4"
-              >
-                <p style={{ fontSize: 12 }}>
-                  Created at: {moment(item?.created_at).format("DD/MMM/YYYY")}
-                </p>
-                <p>{item?.value}</p>
-              </div>
-            ))}
+          {!isLoading && <CardComments />}
         </div>
       </section>
 

@@ -1,6 +1,6 @@
 import { formatNumber } from "../../../helper/utils";
 
-export default function ProductCard({ className, data ,onHandleAddCart}) {
+export default function ProductCard({ className, data ,onHandleAddCart,onHandleDelete}) {
   return (
     <div className={className}>
       <div className="w-100">
@@ -15,7 +15,7 @@ export default function ProductCard({ className, data ,onHandleAddCart}) {
         <p className="h4 m-0 fw-bold">Rp {formatNumber(data?.price)}</p>
       </div>
       <div className="px-2 w-100 pt-3">
-        <button onClick={() => onHandleAddCart(data)} className="btn btn-primary w-100">ADD TO CART</button>
+        <button onClick={() => onHandleAddCart(data?.id)} className="btn btn-primary w-100">ADD TO CART</button>        
       </div>
     </div>
   );

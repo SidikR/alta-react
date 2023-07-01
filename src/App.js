@@ -9,6 +9,9 @@ import Todo from "./components/pages/todo";
 import Products from "./components/pages/products";
 import { linkProducts } from "./helper/constants";
 import Comments from "./components/pages/comments";
+import store from "./store";
+import { Provider } from "react-redux";
+import ContextWrapper from "./context";
 
 const router = createBrowserRouter([
   {
@@ -35,7 +38,13 @@ const router = createBrowserRouter([
 
 function App() {
   const [isAuth, isAuthSet] = useState(true);
-  return <RouterProvider router={router} />;
+  return (
+    <Provider store={store}>
+      <ContextWrapper>
+        <RouterProvider router={router} />
+      </ContextWrapper>
+    </Provider>
+  );
 }
 
 export default App;

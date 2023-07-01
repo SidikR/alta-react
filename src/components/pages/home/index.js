@@ -4,6 +4,7 @@ import HomeBanner from "./home-banner";
 import HomeTestimoni from "./home-testimoni";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { fetchAPI } from "src/helper/hooks";
 
 export default function Home() {
   const [bannerData, bannerDataSet] = useState({
@@ -44,8 +45,7 @@ export default function Home() {
     });
   }
 
-  async function fetchTodos() {
-   
+  async function fetchTodos() {   
   }
 
   useEffect(() => {
@@ -53,7 +53,7 @@ export default function Home() {
   }, []);
 
   return (
-    <Layout>
+    <Layout hideNavbar>
       <HomeBanner bannerData={bannerData} />
       <HomeTestimoni
         bannerData={bannerData}
